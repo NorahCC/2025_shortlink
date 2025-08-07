@@ -9,6 +9,7 @@ import com.negoffer.shortlink.admin.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -38,6 +39,13 @@ public class UserController {
         return Results.success(BeanUtil.toBean(userService.getUserByUsername(username), UserActualRespDTO.class));
     }
 
+    /**
+     * Check if the username exists
+     */
+    @GetMapping("/api/short-link/admin/v1/user/has-username")
+    public Result<Boolean> hasUsername(@RequestParam("username") String username) {
+        return Results.success(userService.hasUsername(username));
+    }
 }
 
 /*
