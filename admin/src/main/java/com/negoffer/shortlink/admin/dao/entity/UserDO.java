@@ -17,9 +17,13 @@
 
 package com.negoffer.shortlink.admin.dao.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.negoffer.shortlink.admin.common.database.BaseDO;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * 用户持久层实体
@@ -46,6 +50,11 @@ public class UserDO extends BaseDO {
     private String realName;
 
     /**
+     * 密码
+     */
+    private String password;
+
+    /**
      * 手机号
      */
     private String phone;
@@ -59,4 +68,22 @@ public class UserDO extends BaseDO {
      * 注销时间戳
      */
     private Long deletionTime;
+
+    /**
+     * 注销时间戳
+     */
+    @TableField(fill = FieldFill.INSERT)
+    private Date createTime;
+
+    /**
+     * 注销时间戳
+     */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
+
+    /**
+     * 注销时间戳
+     */
+    @TableField(fill = FieldFill.INSERT)
+    private Integer delFlag;
 }

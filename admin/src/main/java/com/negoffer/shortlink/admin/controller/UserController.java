@@ -3,14 +3,12 @@ package com.negoffer.shortlink.admin.controller;
 import cn.hutool.core.bean.BeanUtil;
 import com.negoffer.shortlink.admin.common.convention.result.Result;
 import com.negoffer.shortlink.admin.common.convention.result.Results;
+import com.negoffer.shortlink.admin.dto.req.UserRegisterReqDTO;
 import com.negoffer.shortlink.admin.dto.resp.UserActualRespDTO;
 import com.negoffer.shortlink.admin.dto.resp.UserRespDTO;
 import com.negoffer.shortlink.admin.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -45,6 +43,17 @@ public class UserController {
     @GetMapping("/api/short-link/admin/v1/user/has-username")
     public Result<Boolean> hasUsername(@RequestParam("username") String username) {
         return Results.success(userService.hasUsername(username));
+    }
+
+    /**
+     * Register user
+     *
+     * @param requestParam Parameters for the user registration request
+     */
+    @PostMapping("api/short-link/v1/user")
+    public Result<Void> register(@RequestBody UserRegisterReqDTO requestParam) {
+        userService.register(requestParam);
+        return Results.success();
     }
 }
 

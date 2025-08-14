@@ -2,6 +2,7 @@ package com.negoffer.shortlink.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.negoffer.shortlink.admin.dao.entity.UserDO;
+import com.negoffer.shortlink.admin.dto.req.UserRegisterReqDTO;
 import com.negoffer.shortlink.admin.dto.resp.UserRespDTO;
 
 /**
@@ -25,6 +26,15 @@ public interface UserService extends IService<UserDO> {
      * @return Returns True if the username exists, otherwise returns False
      */
     Boolean hasUsername(String username);
+
+    /**
+     * Register user
+     *
+     * @param requestParam Parameters for the user registration request
+     */
+    void register(UserRegisterReqDTO requestParam);
+
+
 }
 
 /**
