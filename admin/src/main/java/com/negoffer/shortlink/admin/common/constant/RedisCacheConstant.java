@@ -15,23 +15,25 @@
  * limitations under the License.
  */
 
-package com.negoffer.shortlink.admin.common.serialize;
-
-import cn.hutool.core.util.DesensitizedUtil;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
-
-import java.io.IOException;
+package com.negoffer.shortlink.admin.common.constant;
 
 /**
- * 手机号脱敏反序列化
+ * 短链接后管 Redis 缓存常量类
  */
-public class PhoneDesensitizationSerializer extends JsonSerializer<String> {
+public class RedisCacheConstant {
 
-    @Override
-    public void serialize(String phone, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-        String phoneDesensitization = DesensitizedUtil.mobilePhone(phone);
-        jsonGenerator.writeString(phoneDesensitization);
-    }
+    /**
+     * 用户注册分布式锁
+     */
+    public static final String LOCK_USER_REGISTER_KEY = "short-link:lock_user-register:";
+
+    /**
+     * 分组创建分布式锁
+     */
+    public static final String LOCK_GROUP_CREATE_KEY = "short-link:lock_group-create:%s";
+
+    /**
+     * 用户登录缓存标识
+     */
+    public static final String USER_LOGIN_KEY = "short-link:login:";
 }
