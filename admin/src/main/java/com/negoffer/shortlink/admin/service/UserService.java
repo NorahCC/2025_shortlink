@@ -3,6 +3,7 @@ package com.negoffer.shortlink.admin.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.negoffer.shortlink.admin.dao.entity.UserDO;
 import com.negoffer.shortlink.admin.dto.req.UserRegisterReqDTO;
+import com.negoffer.shortlink.admin.dto.req.UserUpdateReqDTO;
 import com.negoffer.shortlink.admin.dto.resp.UserRespDTO;
 
 /**
@@ -32,6 +33,13 @@ public interface UserService extends IService<UserDO> {
      * @param requestParam Parameters for the user registration request
      */
     void register(UserRegisterReqDTO requestParam);
+
+    /**
+     * Update user
+     *
+     * @param requestParam Parameters for the user update request
+     */
+    void update(UserUpdateReqDTO requestParam);
 
 
 }

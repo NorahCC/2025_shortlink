@@ -2,6 +2,7 @@ package com.negoffer.shortlink.admin.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.negoffer.shortlink.admin.common.convention.exception.ClientException;
@@ -10,6 +11,7 @@ import com.negoffer.shortlink.admin.common.enums.UserErrorCodeEnum;
 import com.negoffer.shortlink.admin.dao.entity.UserDO;
 import com.negoffer.shortlink.admin.dao.mapper.UserMapper;
 import com.negoffer.shortlink.admin.dto.req.UserRegisterReqDTO;
+import com.negoffer.shortlink.admin.dto.req.UserUpdateReqDTO;
 import com.negoffer.shortlink.admin.dto.resp.UserRespDTO;
 import com.negoffer.shortlink.admin.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -69,6 +71,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
             lock.unlock();
         }
 }
+
+    @Override
+    public void update(UserUpdateReqDTO requestParam) {
+        // TODO Check if the current user is the same as the logged-in user
+        LambdaUpdateWrapper<UserDO> updateWrapper = Wrappers.lambdaUpdate(UserDO.class)
+                .eq(UserDO::getUsername, requestParam.getUsername());
+        baseMapper.update(BeanUtil.toBean(requestParam, UserDO.class), updateWrapper);
+    }
+
 }
 
 /**

@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.negoffer.shortlink.admin.common.convention.result.Result;
 import com.negoffer.shortlink.admin.common.convention.result.Results;
 import com.negoffer.shortlink.admin.dto.req.UserRegisterReqDTO;
+import com.negoffer.shortlink.admin.dto.req.UserUpdateReqDTO;
 import com.negoffer.shortlink.admin.dto.resp.UserActualRespDTO;
 import com.negoffer.shortlink.admin.dto.resp.UserRespDTO;
 import com.negoffer.shortlink.admin.service.UserService;
@@ -55,6 +56,16 @@ public class UserController {
         userService.register(requestParam);
         return Results.success();
     }
+
+    /**
+     * Update user
+     */
+    @PutMapping("/api/short-link/admin/v1/user")
+    public Result<Void> update(@RequestBody UserUpdateReqDTO requestParam) {
+        userService.update(requestParam);
+        return Results.success();
+    }
+
 }
 
 /*
