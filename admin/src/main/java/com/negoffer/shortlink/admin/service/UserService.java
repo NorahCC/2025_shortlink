@@ -2,8 +2,10 @@ package com.negoffer.shortlink.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.negoffer.shortlink.admin.dao.entity.UserDO;
+import com.negoffer.shortlink.admin.dto.req.UserLoginReqDTO;
 import com.negoffer.shortlink.admin.dto.req.UserRegisterReqDTO;
 import com.negoffer.shortlink.admin.dto.req.UserUpdateReqDTO;
+import com.negoffer.shortlink.admin.dto.resp.UserLoginRespDTO;
 import com.negoffer.shortlink.admin.dto.resp.UserRespDTO;
 
 /**
@@ -40,6 +42,24 @@ public interface UserService extends IService<UserDO> {
      * @param requestParam Parameters for the user update request
      */
     void update(UserUpdateReqDTO requestParam);
+
+    /**
+     * User login
+     *
+     * @param requestParam User login request parameters
+     * @return User login response containing the token
+     */
+    UserLoginRespDTO login(UserLoginReqDTO requestParam);
+
+    /**
+     * Check whether the user is logged in.
+     *
+     * @param username Username
+     * @param token    User login token
+     * @return True if the user is logged in; otherwise, false
+     */
+    Boolean checkLogin(String username, String token);
+
 
 
 }

@@ -3,9 +3,11 @@ package com.negoffer.shortlink.admin.controller;
 import cn.hutool.core.bean.BeanUtil;
 import com.negoffer.shortlink.admin.common.convention.result.Result;
 import com.negoffer.shortlink.admin.common.convention.result.Results;
+import com.negoffer.shortlink.admin.dto.req.UserLoginReqDTO;
 import com.negoffer.shortlink.admin.dto.req.UserRegisterReqDTO;
 import com.negoffer.shortlink.admin.dto.req.UserUpdateReqDTO;
 import com.negoffer.shortlink.admin.dto.resp.UserActualRespDTO;
+import com.negoffer.shortlink.admin.dto.resp.UserLoginRespDTO;
 import com.negoffer.shortlink.admin.dto.resp.UserRespDTO;
 import com.negoffer.shortlink.admin.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -66,6 +68,21 @@ public class UserController {
         return Results.success();
     }
 
+    /**
+     * user login
+     */
+    @PostMapping("/api/short-link/admin/v1/user/login")
+    public Result<UserLoginRespDTO> login(@RequestBody UserLoginReqDTO requestParam) {
+        return Results.success(userService.login(requestParam));
+    }
+
+    /**
+     * check if user has logged in
+     */
+    @GetMapping("/api/short-link/admin/v1/user/check-login")
+    public Result<Boolean> checkLogin(@RequestParam("username") String username, @RequestParam("token") String token) {
+        return Results.success(userService.checkLogin(username, token));
+    }
 }
 
 /*
