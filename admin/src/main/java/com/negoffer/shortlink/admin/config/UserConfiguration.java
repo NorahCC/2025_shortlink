@@ -23,6 +23,7 @@ import com.negoffer.shortlink.admin.common.biz.user.UserTransmitFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
  * User config auto-configuration
@@ -34,9 +35,9 @@ public class UserConfiguration {
      * User information transmit filter
      */
     @Bean
-    public FilterRegistrationBean<UserTransmitFilter> globalUserTransmitFilter() {
+    public FilterRegistrationBean<UserTransmitFilter> globalUserTransmitFilter(StringRedisTemplate stringRedisTemplate) {
         FilterRegistrationBean<UserTransmitFilter> registration = new FilterRegistrationBean<>();
-        registration.setFilter(new UserTransmitFilter());
+        registration.setFilter(new UserTransmitFilter(stringRedisTemplate));
         registration.addUrlPatterns("/*");
         registration.setOrder(0);
         return registration;

@@ -2,6 +2,7 @@ package com.negoffer.shortlink.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.negoffer.shortlink.admin.dao.entity.GroupDO;
+import com.negoffer.shortlink.admin.dto.req.ShortLinkGroupUpdateReqDTO;
 import com.negoffer.shortlink.admin.dto.resp.ShortLinkGroupRespDTO;
 
 import java.util.List;
@@ -24,5 +25,13 @@ public interface GroupService extends IService<GroupDO> {
      * @return List of the user's short link groups
      */
     List<ShortLinkGroupRespDTO> listGroup();
+
+    /**
+     * Update a short link group
+     *
+     * @param requestParam Parameters for updating the short link group
+     */
+    void updateGroup(ShortLinkGroupUpdateReqDTO requestParam);
+
 
 }
