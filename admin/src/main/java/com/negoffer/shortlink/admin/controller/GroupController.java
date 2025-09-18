@@ -3,6 +3,7 @@ package com.negoffer.shortlink.admin.controller;
 import com.negoffer.shortlink.admin.common.convention.result.Result;
 import com.negoffer.shortlink.admin.common.convention.result.Results;
 import com.negoffer.shortlink.admin.dto.req.ShortLinkGroupSaveReqDTO;
+import com.negoffer.shortlink.admin.dto.req.ShortLinkGroupSortReqDTO;
 import com.negoffer.shortlink.admin.dto.req.ShortLinkGroupUpdateReqDTO;
 import com.negoffer.shortlink.admin.dto.resp.ShortLinkGroupRespDTO;
 import com.negoffer.shortlink.admin.service.GroupService;
@@ -49,6 +50,15 @@ public class GroupController {
     @DeleteMapping("/api/short-link/admin/v1/group")
     public Result<Void> updateGroup(@RequestParam String gid) {
         groupService.deleteGroup(gid);
+        return Results.success();
+    }
+
+    /**
+     * Sort short link group
+     */
+    @PostMapping("/api/short-link/admin/v1/group/sort")
+    public Result<Void> sortGroup(@RequestBody List<ShortLinkGroupSortReqDTO> requestParam) {
+        groupService.sortGroup(requestParam);
         return Results.success();
     }
 }

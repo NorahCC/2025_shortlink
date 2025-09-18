@@ -2,6 +2,7 @@ package com.negoffer.shortlink.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.negoffer.shortlink.admin.dao.entity.GroupDO;
+import com.negoffer.shortlink.admin.dto.req.ShortLinkGroupSortReqDTO;
 import com.negoffer.shortlink.admin.dto.req.ShortLinkGroupUpdateReqDTO;
 import com.negoffer.shortlink.admin.dto.resp.ShortLinkGroupRespDTO;
 
@@ -39,4 +40,11 @@ public interface GroupService extends IService<GroupDO> {
      * @param gid Short link group identifier
      */
     void deleteGroup(String gid);
+
+    /**
+     * sort short link groups
+     *
+     * @param requestParam Parameters for sorting short link groups
+     */
+    void sortGroup(List<ShortLinkGroupSortReqDTO> requestParam);
 }
