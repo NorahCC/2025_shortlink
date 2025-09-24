@@ -34,9 +34,30 @@ public class UserTableShardingTest {
             "  UNIQUE KEY `idx_unique_username` (`username`) USING BTREE\n" +
             ") ENGINE=InnoDB AUTO_INCREMENT=1715030926162935810 DEFAULT CHARSET=utf8mb4;";
 
+    public static final String SQL2 =  "CREATE TABLE IF NOT EXISTS link.`t_link_%d` (\n" +
+            "  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',\n" +
+            "  `domain` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '域名',\n" +
+            "  `short_uri` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '短链接',\n" +
+            "  `full_short_url` varchar(100) DEFAULT NULL COMMENT '完整短链接',\n" +
+            "  `origin_url` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci COMMENT '原始链接',\n" +
+            "  `click_num` int DEFAULT '0' COMMENT '点击量',\n" +
+            "  `gid` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'default_value' COMMENT '分组标识',\n" +
+            "  `enable_status` tinyint DEFAULT NULL COMMENT '启用标识 0: 已启用 1: 未启用',\n" +
+            "  `created_type` tinyint DEFAULT NULL COMMENT '创建类型 0:接口创建 1:控制台创建',\n" +
+            "  `valid_date_type` tinyint DEFAULT NULL COMMENT '有效期类型 0:永久有效 1:自定义',\n" +
+            "  `valid_date` datetime DEFAULT NULL COMMENT '有效期',\n" +
+            "  `describe` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci COMMENT '描述',\n" +
+            "  `create_time` datetime DEFAULT NULL COMMENT 'creation time',\n" +
+            "  `update_time` datetime DEFAULT NULL COMMENT 'modification ts',\n" +
+            "  `del_flag` tinyint(1) DEFAULT NULL COMMENT 'deleted: 1; otherwise: 0',\n" +
+            "  PRIMARY KEY (`id`),\n" +
+            "  UNIQUE KEY `idx_unique_full_short_url` (`short_uri`,`full_short_url`) USING BTREE\n" +
+            ") ENGINE=InnoDB AUTO_INCREMENT=1970252494688370691 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
+
+
     public static void main(String[] args) {
         for (int i = 0; i < 16; i++) {
-            System.out.printf((SQL) + "%n", i);
+            System.out.printf((SQL2) + "%n", i);
         }
     }
 }
