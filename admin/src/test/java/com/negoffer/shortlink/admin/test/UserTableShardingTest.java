@@ -42,6 +42,7 @@ public class UserTableShardingTest {
             "  `origin_url` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci COMMENT '原始链接',\n" +
             "  `click_num` int DEFAULT '0' COMMENT '点击量',\n" +
             "  `gid` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'default_value' COMMENT '分组标识',\n" +
+            "  `favicon` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '网站图标',\n" +
             "  `enable_status` tinyint DEFAULT NULL COMMENT '启用标识 0: 已启用 1: 未启用',\n" +
             "  `created_type` tinyint DEFAULT NULL COMMENT '创建类型 0:接口创建 1:控制台创建',\n" +
             "  `valid_date_type` tinyint DEFAULT NULL COMMENT '有效期类型 0:永久有效 1:自定义',\n" +
