@@ -1,5 +1,6 @@
 package com.negoffer.shortlink.project.dto.resp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -48,7 +49,14 @@ public class ShortLinkPageRespDTO {
     /**
      * Expiration date (if applicable)
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date validDate;
+
+    /**
+     * Create time
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date createTime;
 
     /**
      * Description or remarks for the short link
