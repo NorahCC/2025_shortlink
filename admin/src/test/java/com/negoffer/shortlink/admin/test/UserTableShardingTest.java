@@ -55,10 +55,24 @@ public class UserTableShardingTest {
             "  UNIQUE KEY `idx_unique_full_short_url` (`short_uri`,`full_short_url`) USING BTREE\n" +
             ") ENGINE=InnoDB AUTO_INCREMENT=1970252494688370691 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
 
+    public static final String SQL3 =
+            "CREATE TABLE IF NOT EXISTS shortlink.`t_group_%d` (\n" +
+            "  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',\n" +
+            "  `gid` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '分组标识',\n" +
+            "  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '分组名称',\n" +
+            "  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建分组用户名',\n" +
+            "  `sort_order` int DEFAULT NULL COMMENT '分组排序',\n" +
+            "  `create_time` datetime DEFAULT NULL COMMENT 'creation time',\n" +
+            "  `update_time` datetime DEFAULT NULL COMMENT 'modification ts',\n" +
+            "  `del_flag` tinyint(1) DEFAULT NULL COMMENT 'deleted: 1; otherwise: 0',\n" +
+            "  PRIMARY KEY (`id`)\n" +
+            ") ENGINE=InnoDB AUTO_INCREMENT=1968062165852573699 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
+
+
 
     public static void main(String[] args) {
         for (int i = 0; i < 16; i++) {
-            System.out.printf((SQL2) + "%n", i);
+            System.out.printf((SQL3) + "%n", i);
         }
     }
 }
