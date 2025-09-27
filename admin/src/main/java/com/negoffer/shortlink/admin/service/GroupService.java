@@ -47,4 +47,13 @@ public interface GroupService extends IService<GroupDO> {
      * @param requestParam Parameters for sorting short link groups
      */
     void sortGroup(List<ShortLinkGroupSortReqDTO> requestParam);
+
+    /**
+     * Add a new short link group
+     *
+     * @param username   Username
+     * @param groupName  Short link group name
+     */
+    void saveGroup(String username, String groupName);
+
 }
