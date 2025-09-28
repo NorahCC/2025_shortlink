@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.negoffer.shortlink.project.dao.entity.ShortLinkDO;
 import com.negoffer.shortlink.project.dto.req.ShortLinkCreateReqDTO;
 import com.negoffer.shortlink.project.dto.req.ShortLinkPageReqDTO;
+import com.negoffer.shortlink.project.dto.req.ShortLinkUpdateReqDTO;
 import com.negoffer.shortlink.project.dto.resp.ShortLinkCreateRespDTO;
 import com.negoffer.shortlink.project.dto.resp.ShortLinkGroupCountQueryRespDTO;
 import com.negoffer.shortlink.project.dto.resp.ShortLinkPageRespDTO;
@@ -23,6 +24,13 @@ public interface ShortLinkService extends IService<ShortLinkDO> {
      * @return Information about the created short link
      */
     ShortLinkCreateRespDTO createShortLink(ShortLinkCreateReqDTO requestParam);
+
+    /**
+     * Update a short link
+     *
+     * @param requestParam Short link update request parameters
+     */
+    void updateShortLink(ShortLinkUpdateReqDTO requestParam);
 
     /**
      * Paginated query for short links.

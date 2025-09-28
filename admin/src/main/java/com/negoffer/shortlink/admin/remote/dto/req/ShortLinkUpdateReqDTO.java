@@ -6,15 +6,10 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * Short Link Creation Request DTO
+ * Short link update request object
  */
 @Data
-public class ShortLinkCreateReqDTO {
-
-    /**
-     * Domain
-     */
-    private String domain;
+public class ShortLinkUpdateReqDTO {
 
     /**
      * Original URL
@@ -22,24 +17,24 @@ public class ShortLinkCreateReqDTO {
     private String originUrl;
 
     /**
-     * Group ID
+     * Full short link
+     */
+    private String fullShortUrl;
+
+    /**
+     * Group identifier
      */
     private String gid;
 
     /**
-     * Creation type: 0 - API, 1 - Console
+     * Expiration type: 0 - permanent, 1 - custom
      */
-    private Integer createdType;
-
-    /**
-     * Expiration type: 0 - Permanent, 1 - Custom
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Integer validDateType;
 
     /**
      * Expiration date
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date validDate;
 
     /**
