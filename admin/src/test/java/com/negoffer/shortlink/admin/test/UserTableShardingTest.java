@@ -68,11 +68,18 @@ public class UserTableShardingTest {
             "  PRIMARY KEY (`id`)\n" +
             ") ENGINE=InnoDB AUTO_INCREMENT=1968062165852573699 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
 
+    public static final String SQL4 =
+            "CREATE TABLE IF NOT EXISTS link.`t_link_goto_%d` (\n" +
+            "  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',\n" +
+            "  `gid` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'default_value' COMMENT 'Group Identifier',\n" +
+            "  `full_short_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Full Short Link',\n" +
+            "  PRIMARY KEY (`id`)\n" +
+            ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
 
 
     public static void main(String[] args) {
         for (int i = 0; i < 16; i++) {
-            System.out.printf((SQL3) + "%n", i);
+            System.out.printf((SQL4) + "%n", i);
         }
     }
 }

@@ -9,6 +9,8 @@ import com.negoffer.shortlink.project.dto.req.ShortLinkUpdateReqDTO;
 import com.negoffer.shortlink.project.dto.resp.ShortLinkCreateRespDTO;
 import com.negoffer.shortlink.project.dto.resp.ShortLinkGroupCountQueryRespDTO;
 import com.negoffer.shortlink.project.dto.resp.ShortLinkPageRespDTO;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 
 import java.util.List;
 
@@ -47,4 +49,14 @@ public interface ShortLinkService extends IService<ShortLinkDO> {
      * @return Response containing the number of short links per group
      */
     List<ShortLinkGroupCountQueryRespDTO> listGroupShortLinkCount(List<String> requestParam);
+
+    /**
+     * Short link redirection
+     *
+     * @param shortUri  Suffix of the short link
+     * @param request   HTTP request
+     * @param response  HTTP response
+     */
+    void restoreUrl(String shortUri, ServletRequest request, ServletResponse response);
+
 }

@@ -10,6 +10,8 @@ import com.negoffer.shortlink.project.dto.resp.ShortLinkCreateRespDTO;
 import com.negoffer.shortlink.project.dto.resp.ShortLinkGroupCountQueryRespDTO;
 import com.negoffer.shortlink.project.dto.resp.ShortLinkPageRespDTO;
 import com.negoffer.shortlink.project.service.ShortLinkService;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,11 @@ import java.util.List;
 public class ShortLinkController {
 
     private final ShortLinkService shortLinkService;
+
+    @GetMapping("/{short-uri}")
+    public void restoreUrl(@PathVariable("short-uri") String shortUri, ServletRequest request, ServletResponse response) {
+        shortLinkService.restoreUrl(shortUri, request, response);
+    }
 
     /**
      * Create a short link
