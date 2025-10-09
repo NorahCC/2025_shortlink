@@ -24,6 +24,7 @@ import com.negoffer.shortlink.project.dto.resp.ShortLinkGroupCountQueryRespDTO;
 import com.negoffer.shortlink.project.dto.resp.ShortLinkPageRespDTO;
 import com.negoffer.shortlink.project.service.ShortLinkService;
 import com.negoffer.shortlink.project.toolkit.HashUtil;
+import com.negoffer.shortlink.project.toolkit.LinkUtil;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletResponse;
@@ -105,7 +106,11 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                 throw new ServiceException("Short link already exists");
             }
         }
-
+        stringRedisTemplate.opsForValue().set(
+                fullShortUrl,
+                requestParam.getOriginUrl(),
+                LinkUtil.getLinkCacheValidTime(requestParam.getValidDate()), TimeUnit.MILLISECONDS
+        );
         // Add generated URI to bloom filter to avoid future duplicate generation
         shortUriCreateCachePenetrationBloomFilter.add(fullShortUrl);
 
