@@ -6,7 +6,7 @@ package com.negoffer.shortlink.project.common.constant;
 public class ShortLinkConstant {
 
     /**
-     * Default cache expiration time for permanent short links (in milliseconds)
+     * Default cache expiration time for permanent short links (in milliseconds), default time is a month
      */
     public static final long DEFAULT_CACHE_VALID_TIME = 2626560000L;
 }
