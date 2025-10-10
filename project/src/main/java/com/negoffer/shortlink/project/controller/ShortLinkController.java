@@ -26,6 +26,9 @@ public class ShortLinkController {
 
     private final ShortLinkService shortLinkService;
 
+    /**
+     * Redirects a short link to its original URL
+     */
     @GetMapping("/{short-uri}")
     public void restoreUrl(@PathVariable("short-uri") String shortUri, ServletRequest request, ServletResponse response) {
         shortLinkService.restoreUrl(shortUri, request, response);
