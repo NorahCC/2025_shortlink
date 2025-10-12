@@ -5,6 +5,7 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.TypeReference;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.negoffer.shortlink.admin.common.convention.result.Result;
+import com.negoffer.shortlink.admin.dto.req.RecycleBinSaveReqDTO;
 import com.negoffer.shortlink.admin.remote.dto.req.ShortLinkCreateReqDTO;
 import com.negoffer.shortlink.admin.remote.dto.req.ShortLinkPageReqDTO;
 import com.negoffer.shortlink.admin.remote.dto.req.ShortLinkUpdateReqDTO;
@@ -85,6 +86,15 @@ public interface ShortLinkRemoteService {
 
         // Parse the response JSON string into a Result<String> object
         return JSON.parseObject(resultStr, new TypeReference<>() {});
+    }
+
+    /**
+     * Save to Recycle Bin
+     *
+     * @param requestParam
+     */
+    default void saveRecycleBin(RecycleBinSaveReqDTO requestParam) {
+        HttpUtil.post("http://127.0.0.1:8001/api/short-link/v1/recycle-bin/save", JSON.toJSONString(requestParam));
     }
 }
 
