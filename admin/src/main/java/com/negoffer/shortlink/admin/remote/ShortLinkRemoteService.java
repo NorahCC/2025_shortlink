@@ -11,6 +11,7 @@ import com.negoffer.shortlink.admin.remote.dto.req.ShortLinkUpdateReqDTO;
 import com.negoffer.shortlink.admin.remote.dto.resp.ShortLinkCreateRespDTO;
 import com.negoffer.shortlink.admin.remote.dto.resp.ShortLinkGroupCountQueryRespDTO;
 import com.negoffer.shortlink.admin.remote.dto.resp.ShortLinkPageRespDTO;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.List;
@@ -72,5 +73,18 @@ public interface ShortLinkRemoteService {
         HttpUtil.post("http://127.0.0.1:8001/api/short-link/v1/update", JSON.toJSONString(requestParam));
     }
 
+    /**
+     * Get the title of a webpage based on its URL.
+     *
+     * @param url The target website URL.
+     * @return The title of the website.
+     */
+    default Result<String> getTitleByUrl(@RequestParam("url") String url) {
+        // Send a GET request to the short-link service to retrieve the title
+        String resultStr = HttpUtil.get("http://127.0.0.1:8001/api/short-link/v1/title?url=" + url);
+
+        // Parse the response JSON string into a Result<String> object
+        return JSON.parseObject(resultStr, new TypeReference<>() {});
+    }
 }
 
