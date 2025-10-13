@@ -8,6 +8,7 @@ import com.negoffer.shortlink.admin.common.convention.result.Result;
 import com.negoffer.shortlink.admin.dto.req.RecycleBinSaveReqDTO;
 import com.negoffer.shortlink.admin.remote.dto.req.ShortLinkCreateReqDTO;
 import com.negoffer.shortlink.admin.remote.dto.req.ShortLinkPageReqDTO;
+import com.negoffer.shortlink.admin.remote.dto.req.ShortLinkRecycleBinPageReqDTO;
 import com.negoffer.shortlink.admin.remote.dto.req.ShortLinkUpdateReqDTO;
 import com.negoffer.shortlink.admin.remote.dto.resp.ShortLinkCreateRespDTO;
 import com.negoffer.shortlink.admin.remote.dto.resp.ShortLinkGroupCountQueryRespDTO;
@@ -103,9 +104,9 @@ public interface ShortLinkRemoteService {
      * @param requestParam Request parameters for paginated short link query
      * @return Response containing queried short links
      */
-    default Result<IPage<ShortLinkPageRespDTO>> pageRecycleBinShortLink(ShortLinkPageReqDTO requestParam) {
+    default Result<IPage<ShortLinkPageRespDTO>> pageRecycleBinShortLink(ShortLinkRecycleBinPageReqDTO requestParam) {
         Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("gid", requestParam.getGid());
+        requestMap.put("gidList", requestParam.getGidList());
         requestMap.put("current", requestParam.getCurrent());
         requestMap.put("size", requestParam.getSize());
         String resultPageStr = HttpUtil.get("http://127.0.0.1:8001/api/short-link/v1/recycle-bin/page", requestMap);
