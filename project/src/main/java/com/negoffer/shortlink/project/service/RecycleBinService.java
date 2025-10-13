@@ -3,6 +3,7 @@ package com.negoffer.shortlink.project.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.negoffer.shortlink.project.dao.entity.ShortLinkDO;
+import com.negoffer.shortlink.project.dto.req.RecycleBinRecoverReqDTO;
 import com.negoffer.shortlink.project.dto.req.RecycleBinSaveReqDTO;
 import com.negoffer.shortlink.project.dto.req.ShortLinkRecycleBinPageReqDTO;
 import com.negoffer.shortlink.project.dto.resp.ShortLinkPageRespDTO;
@@ -26,4 +27,11 @@ public interface RecycleBinService extends IService<ShortLinkDO> {
      * @return Response containing queried short links
      */
     IPage<ShortLinkPageRespDTO> pageShortLink(ShortLinkRecycleBinPageReqDTO requestParam);
+
+    /**
+     * Restore short link
+     *
+     * @param requestParam short link restore request parameters
+     */
+    void recoverRecycleBin(RecycleBinRecoverReqDTO requestParam);
 }

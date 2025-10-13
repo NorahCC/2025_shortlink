@@ -3,6 +3,7 @@ package com.negoffer.shortlink.admin.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.negoffer.shortlink.admin.common.convention.result.Result;
 import com.negoffer.shortlink.admin.common.convention.result.Results;
+import com.negoffer.shortlink.admin.dto.req.RecycleBinRecoverReqDTO;
 import com.negoffer.shortlink.admin.dto.req.RecycleBinSaveReqDTO;
 import com.negoffer.shortlink.admin.remote.ShortLinkRemoteService;
 import com.negoffer.shortlink.admin.remote.dto.req.ShortLinkRecycleBinPageReqDTO;
@@ -44,5 +45,14 @@ public class RecycleBinController {
     @GetMapping("/api/short-link/admin/v1/recycle-bin/page")
     public Result<IPage<ShortLinkPageRespDTO>> pageShortLink(ShortLinkRecycleBinPageReqDTO requestParam) {
         return recycleBinService.pageRecycleBinShortLink(requestParam);
+    }
+
+    /**
+     * Restore a short link from the recycle bin
+     */
+    @PostMapping("/api/short-link/admin/v1/recycle-bin/recover")
+    public Result<Void> recoverRecycleBin(@RequestBody RecycleBinRecoverReqDTO requestParam) {
+        shortLinkRemoteService.recoverRecycleBin(requestParam);
+        return Results.success();
     }
 }
