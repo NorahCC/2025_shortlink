@@ -7,6 +7,7 @@ import com.negoffer.shortlink.project.dto.req.RecycleBinRecoverReqDTO;
 import com.negoffer.shortlink.project.dto.req.RecycleBinSaveReqDTO;
 import com.negoffer.shortlink.project.dto.req.ShortLinkRecycleBinPageReqDTO;
 import com.negoffer.shortlink.project.dto.resp.ShortLinkPageRespDTO;
+import com.negoffer.shortlink.project.dto.req.RecycleBinRemoveReqDTO;
 import com.negoffer.shortlink.project.service.RecycleBinService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +47,15 @@ public class RecycleBinController {
     @PostMapping("/api/short-link/v1/recycle-bin/recover")
     public Result<Void> recoverRecycleBin(@RequestBody RecycleBinRecoverReqDTO requestParam) {
         recycleBinService.recoverRecycleBin(requestParam);
+        return Results.success();
+    }
+
+    /**
+     * Remove short link
+     */
+    @PostMapping("/api/short-link/v1/recycle-bin/remove")
+    public Result<Void> removeRecycleBin(@RequestBody RecycleBinRemoveReqDTO requestParam) {
+        recycleBinService.removeRecycleBin(requestParam);
         return Results.success();
     }
 }

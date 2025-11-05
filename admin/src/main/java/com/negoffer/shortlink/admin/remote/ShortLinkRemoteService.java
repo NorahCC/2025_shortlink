@@ -14,6 +14,7 @@ import com.negoffer.shortlink.admin.remote.dto.req.ShortLinkUpdateReqDTO;
 import com.negoffer.shortlink.admin.remote.dto.resp.ShortLinkCreateRespDTO;
 import com.negoffer.shortlink.admin.remote.dto.resp.ShortLinkGroupCountQueryRespDTO;
 import com.negoffer.shortlink.admin.remote.dto.resp.ShortLinkPageRespDTO;
+import com.negoffer.shortlink.admin.dto.req.RecycleBinRemoveReqDTO;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
@@ -122,6 +123,15 @@ public interface ShortLinkRemoteService {
      */
     default void recoverRecycleBin(RecycleBinRecoverReqDTO requestParam) {
         HttpUtil.post("http://127.0.0.1:8001/api/short-link/v1/recycle-bin/recover", JSON.toJSONString(requestParam));
+    }
+
+    /**
+     * Remove short link
+     *
+     * @param requestParam short link removal request parameters
+     */
+    default void removeRecycleBin(RecycleBinRemoveReqDTO requestParam) {
+        HttpUtil.post("http://127.0.0.1:8001/api/short-link/v1/recycle-bin/remove", JSON.toJSONString(requestParam));
     }
 }
 
