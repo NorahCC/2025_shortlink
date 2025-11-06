@@ -9,4 +9,9 @@ public class ShortLinkConstant {
      * Default cache expiration time for permanent short links (in milliseconds), default time is a month
      */
     public static final long DEFAULT_CACHE_VALID_TIME = 2626560000L;
+
+    /**
+     * Amap region information API endpoint
+     */
+    public static final String AMAP_REMOTE_URL = "https://restapi.amap.com/v3/ip";
 }
