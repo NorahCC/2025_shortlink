@@ -113,4 +113,18 @@ public class LinkUtil {
         }
         return "PC";
     }
+
+    /**
+     * Get the user's network type
+     *
+     * @param request HTTP request
+     * @return Network type
+     */
+    public static String getNetwork(HttpServletRequest request) {
+        String actualIp = getActualIp(request);
+        // Here we simply determine the network type based on the IP address range.
+        // You may need a more sophisticated approach, such as querying an IP database
+        // or calling a third-party API to identify the network type.
+        return actualIp.startsWith("192.168.") || actualIp.startsWith("10.") ? "WIFI" : "Mobile";
+    }
 }
