@@ -1,21 +1,23 @@
 package com.negoffer.shortlink.project.dto.resp;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-
-import java.util.Date;
+import lombok.NoArgsConstructor;
 
 /**
  * Response DTO for basic short link access monitoring
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ShortLinkStatsAccessDailyRespDTO {
 
     /**
      * Date
      */
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    private Date date;
+    private String date;
 
     /**
      * Page views
