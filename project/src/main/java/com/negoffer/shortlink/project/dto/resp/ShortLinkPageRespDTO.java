@@ -67,4 +67,35 @@ public class ShortLinkPageRespDTO {
      * Website favicon or logo URL
      */
     private String favicon;
+
+    /**
+     * Historical PV (Page Views)
+     */
+    private Integer totalPv;
+
+    /**
+     * Today's PV (Page Views)
+     */
+    private Integer toDayPv;
+
+    /**
+     * Historical UV (Unique Visitors)
+     */
+    private Integer totalUv;
+
+    /**
+     * Today's UV (Unique Visitors)
+     */
+    private Integer toDayUv;
+
+    /**
+     * Historical UIP (Unique IPs)
+     */
+    private Integer totalUIp;
+
+    /**
+     * Today's UIP (Unique IPs)
+     */
+    private Integer toDayUIp;
+
 }

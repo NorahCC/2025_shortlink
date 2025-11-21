@@ -76,10 +76,26 @@ public class UserTableShardingTest {
             "  PRIMARY KEY (`id`)\n" +
             ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
 
+    public static final String SQL5 = "CREATE TABLE IF NOT EXISTS link.`t_link_stats_today_%d` (\n" +
+            "  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',\n" +
+            "  `gid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'default' COMMENT 'Group Identifier',\n" +
+            "  `full_short_url` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Full Short Link',\n" +
+            "  `date` date DEFAULT NULL COMMENT 'Date',\n" +
+            "  `today_pv` int(11) DEFAULT '0' COMMENT 'Today PV',\n" +
+            "  `today_uv` int(11) DEFAULT '0' COMMENT 'Today UV',\n" +
+            "  `today_ip_count` int(11) DEFAULT '0' COMMENT 'Today IP Count',\n" +
+            "  `create_time` datetime DEFAULT NULL COMMENT 'Creation Time',\n" +
+            "  `update_time` datetime DEFAULT NULL COMMENT 'Update Time',\n" +
+            "  `del_flag` tinyint(1) DEFAULT NULL COMMENT 'Delete Flag (0: Active, 1: Deleted)',\n" +
+            "  PRIMARY KEY (`id`),\n" +
+            "  UNIQUE KEY `idx_unique_today_stats` (`full_short_url`, `gid`, `date`) USING BTREE\n" +
+            ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
+
+
 
     public static void main(String[] args) {
         for (int i = 0; i < 16; i++) {
-            System.out.printf((SQL4) + "%n", i);
+            System.out.printf((SQL5) + "%n", i);
         }
     }
 }
