@@ -76,7 +76,7 @@ public class ShortLinkPageRespDTO {
     /**
      * Today's PV
      */
-    private Integer toDayPv;
+    private Integer todayPv;
 
     /**
      * Historical UV
@@ -86,16 +86,16 @@ public class ShortLinkPageRespDTO {
     /**
      * Today's UV
      */
-    private Integer toDayUv;
+    private Integer todayUv;
 
     /**
      * Historical UIP
      */
-    private Integer totalUIp;
+    private Integer totalUip;
 
     /**
      * Today's UIP
      */
-    private Integer toDayUIp;
+    private Integer toDayUip;
 
 }

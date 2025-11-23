@@ -1,9 +1,11 @@
 package com.negoffer.shortlink.project.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.negoffer.shortlink.project.dao.entity.ShortLinkDO;
-import org.apache.ibatis.annotations.Update;
+import com.negoffer.shortlink.project.dto.req.ShortLinkPageReqDTO;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * Short link persistence layer
@@ -21,4 +23,10 @@ public interface ShortLinkMapper extends BaseMapper<ShortLinkDO> {
             @Param("totalUv") Integer totalUv,
             @Param("totalUip") Integer totalUip
     );
+
+    /**
+     * Paginated short link statistics
+     */
+    IPage<ShortLinkDO> pageLink(ShortLinkPageReqDTO requestParam);
+
 }
