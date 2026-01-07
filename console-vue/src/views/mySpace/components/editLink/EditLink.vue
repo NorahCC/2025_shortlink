@@ -38,6 +38,7 @@
 <script setup>
 import { reactive, ref, onMounted, nextTick, watch, onBeforeUnmount, getCurrentInstance } from 'vue'
 import { useStore } from 'vuex'
+import {ElMessage} from "element-plus";
 
 const store = useStore()
 const defaultDomain = store.state.domain?? ' '
@@ -50,7 +51,6 @@ const API = proxy.$API
 const editData = props.editData
 // url的校验规则
 const reg = /^(https?:\/\/(([a-zA-Z0-9]+-?)+[a-zA-Z0-9]+\.)+(([a-zA-Z0-9]+-?)+[a-zA-Z0-9]+))(:\d+)?(\/.*)?(\?.*)?(#.*)?$/;
-console.log(editData)
 // 自定义时间中选择几天
 const shortcuts = [
   {
@@ -84,6 +84,7 @@ const formData = reactive({
   domain: defaultDomain,
   originUrl: editData.originUrl,
   gid: editData.gid,
+  originGid: editData.gid,
   createdType: editData.createdType,
   validDate: editData.validDate,
   describe: editData.describe,
@@ -156,15 +157,19 @@ watch(
 )
 watch(
   () => props.editData,
-  nV => {
-    console.log(nV)
+  (nV) => {
+    // console.log(nV, oV)
     formData.originUrl = nV.originUrl
     formData.gid = nV.gid
+    formData.originGid = nV.gid
     formData.createdType = nV.createdType
     formData.validDate = nV.validDate
     formData.describe = nV.describe
     formData.validDateType = nV.validDateType
     formData.fullShortUrl = nV.fullShortUrl
+  },
+  {
+    immediate: true
   }
 )
 // 校验规则
@@ -224,9 +229,8 @@ const disabledDate = (time) => {
   return new Date(time).getTime() < new Date().getTime()//选当前时间之后的时间
 }
 
-console.log(new Date().getTime())
 // 将组件里面的确认和取消点击事件传出去
-const emits = defineEmits(['onSubmit', 'cancel'])
+const emits = defineEmits(['onSubmit', 'cancel', 'updatePage'])
 // 点击确定按钮后的校验
 const ruleFormRef = ref()
 const onSubmit = async (formEl) => {
@@ -237,9 +241,12 @@ const onSubmit = async (formEl) => {
     if (valid) {
       emits('onSubmit', false)
       const res = await API.smallLinkPage.editSmallLink(formData)
-      console.log('submit!', res)
-    } else {
-      console.log('error submit!', fields)
+      if (res?.data?.code !== '0') {
+        ElMessage.error(res.data.message)
+      } else {
+        ElMessage.success('修改成功')
+        emits('updatePage')
+      }
     }
   })
 }
