@@ -22,6 +22,11 @@ public class ShortLinkUpdateReqDTO {
     private String fullShortUrl;
 
     /**
+     * Original Group identifier
+     */
+    private String originGid;
+
+    /**
      * Group identifier
      */
     private String gid;
